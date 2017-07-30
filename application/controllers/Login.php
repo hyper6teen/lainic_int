@@ -11,7 +11,6 @@ class Login extends CI_Controller {
         parent::__construct();
         $this->load->model('crud_model');
         $this->load->model('applicant_model');
-        $this->load->model('skype_model');
         $this->load->database();
         $this->load->library('session');
         /* cache control */
@@ -20,6 +19,9 @@ class Login extends CI_Controller {
         $this->output->set_header('Pragma: no-cache');
         $this->output->set_header("Expires: Mon, 26 Jul 2010 05:00:00 GMT");
     }
+
+
+
 
     //Default function, redirects to logged in user area
     public function index() {
@@ -40,29 +42,8 @@ class Login extends CI_Controller {
     }
 
 
+    
 
-    //Skype Validation
-    function validateSkype()
-    {
-        $skype_id = $_POST['data'];
-
-        if(strlen($skype_id) >= 5)
-        {
-            $url = "https://login.live.com/login.srf?wa=wsignin1.0&rpsnv=13&ct=1501278133&rver=6.7.6626.0&wp=MBI_SSL&wreply=https%3A%2F%2Flw.skype.com%2Flogin%2Foauth%2Fproxy%3Fclient_id%3D578134%26redirect_uri%3Dhttps%253A%252F%252Fweb.skype.com%252F%26site_name%3Dlw.skype.com&lc=1033&id=293290&mkt=en-PH&uaid=4b934bab08d2bb881e9fe2515f4bd1bc&psi=skype&lw=1&cobrandid=90010&client_flight=hsu%2CReservedFlight33%2CReservedFlight67&username=". $skype_id;
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false );
-                // This is what solved the issue (Accepting gzip encoding)
-            curl_setopt($ch, CURLOPT_ENCODING, "gzip,deflate");     
-            $response = curl_exec($ch);
-            curl_close($ch);
-            $response = str_replace('<', '&lt;', $response);
-            $response = str_replace('>', '&gt;', $response);
-            echo strpos($response, '"IfExistsResult":0') != false ? "<img src = https://api.skype.com/users/".$skype_id."/profile/avatar/>" : "invalid";
-        }
-    }
 
     //Ajax login function 
     function ajax_login() 
@@ -79,6 +60,7 @@ class Login extends CI_Controller {
         if ($login_status == 'success') {
             $response['redirect_url'] = '';
         }
+
         //Replying ajax request with validation response
         echo json_encode($response);
     }
@@ -145,6 +127,12 @@ class Login extends CI_Controller {
         $this->load->view('four_zero_four');
     }
 
+
+    public function book_class()
+    {
+        $this->load->view('backend/book');
+    }
+    
     // PASSWORD RESET BY EMAIL
     function forgot_password()
     {

@@ -1,5 +1,4 @@
 <?php
-
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
@@ -25,50 +24,7 @@ class Admin extends CI_Controller
         if ($this->session->userdata('admin_login') == 1)
             redirect(base_url() . 'index.php?admin/dashboard', 'refresh');
     }
-
-    public function view_profile()
-    {
-        if ($this->session->userdata('admin_login') != 1)
-            redirect(base_url(), 'refresh');
-
-        $page_data['user_id'] = $this->session->userdata('admin_id');
-        $page_data['user_type'] = $this->session->userdata('login_type');
-        
-        $admin_info = $this->db->get_where('admin' , array(
-            'admin_id' => $page_data['user_id']
-        ))->result_array();
-
-        foreach ($admin_info as $row) {
-            
-        $page_data['page_profile'] = 
-        '<section class="infos container">
-            <div class="content">
-                <h1>Personal Information</h1>
-                <div class="row">
-                    <div class="prompt">Name</div>
-                    <div class="value">'. $row['name'] .'</div>
-                </div>
-                <div class="separator"></div>
-                <div class="row">
-                    <div class="prompt">Email</div>
-                    <div class="value">'. $row['email'] .'</div>
-                </div>
-                <div class="separator"></div>
-                <div class="row">
-                    <div class="prompt">Password</div>
-                    <div class="value">'. $row['password'] .'</div>
-                </div>
-            </div>
-        </section>';
-
-        }
-
-        $page_data['page_name']  = 'Profile';
-        $page_data['page_title'] = get_phrase('admin_dashboard');
-
-        $this->load->view('backend/profile', $page_data);
-    }
-
+    
     /***ADMIN DASHBOARD***/
     function dashboard()
     {
@@ -78,17 +34,19 @@ class Admin extends CI_Controller
         $page_data['page_title'] = get_phrase('admin_dashboard');
         $this->load->view('backend/index', $page_data);
     }
-  
+    
     function view_teacher()
     {
         if ($this->session->userdata('admin_login') != 1)
             redirect(base_url(), 'refresh');
         $page_data['system_name']  = 'dashboard';
-        $page_data['account_type']  = 'admin';
-        $page_data['page_name'] = 'teacher';
+        $page_data['account_type']  = "admin";
+        $page_data['page_name'] = "teacher";
         $this->load->view('backend/index', $page_data);
     }
-  
+    
+
+    
     /****MANAGE STUDENTS CLASSWISE*****/
 	function student_add()
 	{
@@ -340,7 +298,6 @@ class Admin extends CI_Controller
             $this->session->set_flashdata('flash_message' , get_phrase('data_deleted'));
             redirect(base_url() . 'index.php?admin/teacher/', 'refresh');
         }
-
         $page_data['teachers']   = $this->db->get('teacher')->result_array();
         $page_data['page_name']  = 'teacher';
         $page_data['page_title'] = get_phrase('manage_teacher');

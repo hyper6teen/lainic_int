@@ -5,9 +5,6 @@
 
 <?php
 	
-	$system_name	=	$this->db->get_where('settings' , array('type'=>'system_name'))->row()->description;
-	$system_title	=	$this->db->get_where('settings' , array('type'=>'system_title'))->row()->description;
-
 	$hash = $this->input->post('hash_app');
 
 	$prompt['status'] = '';
@@ -18,6 +15,7 @@
 
 		if($get_app != null)
 		{
+
 			if($this->input->post('accept'))
 			{	
 				$appdata1 = array(
@@ -131,12 +129,16 @@
 
 	}
 
+	$system_name	=	$this->db->get_where('settings' , array('type'=>'system_name'))->row()->description;
+	$system_title	=	$this->db->get_where('settings' , array('type'=>'system_title'))->row()->description;
 ?>
 	
 <title><?php echo $system_title;?></title>
-	<link rel="stylesheet" type="text/css" href="assets/font-awesome-4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-	<link rel="stylesheet" href="assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css">
+
+<link rel="stylesheet" type="text/css" href="assets/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+<link rel="stylesheet" href="assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css">
 	<link rel="stylesheet" href="assets/css/font-icons/entypo/css/entypo.css">
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
 	<link rel="stylesheet" href="assets/css/bootstrap.css">
@@ -151,9 +153,7 @@
 <script type="text/javascript" src='assets/js/registration.js'></script>
 
 <script type="text/javascript">
-
 	var baseurl = '<?php echo base_url();?>';
-
 </script>
 
 <body>
@@ -179,6 +179,7 @@
 							</div>
 							<input type="text" class="form-control" name="email" id="email" placeholder="Email" autocomplete="off" data-mask="email" />
 						</div>
+						
 					</div>
 					
 					<div class="form-group">
@@ -196,6 +197,7 @@
 							Login
 						</button>
 					</div>
+
 				</form>
 
 					<div class="login-bottom-links">
@@ -217,7 +219,7 @@
 						<li><a href="">HOME</a></li>
 						<li><a href="">ABOUT US</a></li>
 						<li><a href="">FEES</a></li>
-						<li><a href="book.php">BOOK A CLASS</a></li>
+						<li><a href="<?php echo base_url();?>index.php?login/book_class">BOOK A CLASS</a></li>
 						<li><a onclick='showConfirm("signin")'>SIGN IN</a></li>
 					</ul>
 
@@ -358,7 +360,7 @@
 					</div>
 					<div class='application-form-body'>
 						<p>*FILL IN ALL THE FIELDS TO APPLY FOR A HOME-BASED ONLINE ENGLISH TEACHING JOB.</p>
-						<form action="<?php echo base_url() . 'index.php?email/send_applicant_info/';?>" method='post' id='form_login'>
+						<form action="<?php echo base_url() . 'index.php?email/send_applicant_info/';?>" method='post'>
 							<div id='afp1' class='application-form-page-1'>
 								<div class='application-row'>
 									<input name='fname' placeholder='FIRST NAME...' class='req1 application-input-1'>
@@ -407,10 +409,9 @@
 									<input name='address' placeholder='COMPLETE ADDRESS...' class='req1 application-input-3'>
 								</div>
 								<div class='application-row'>
-									<input id="skype" name='skype' placeholder='SKYPE ID...' class='req1 application-input-1'>
-									<div id='valid' style='float:left; overflow: hidden;  position:fixed;'></div>	
 									<input name='email' type='email' placeholder='E-MAIL ADDRESS...' class='req1 application-input-1'>
 									<input name='mobile_no' type='number' placeholder='MOBILE NUMBER...' class='req1 application-input-1'>
+									<input name='skype_id' placeholder='SKYPE ID...' class='req1 application-input-1'>
 								</div>
 								<a id='n1' onclick='changeAppPage("afp2")' class='application-btn disabled-btn'>
 									NEXT
@@ -422,19 +423,16 @@
 									
 									<select name="isp" class="req2 application-input-1" data-validate="required">
 		                              <option value="">SELECT ISP</option>
-		                              
-			                              	<?php 
-												$isp = $this->db->get('form_isp')->result_array();
-												foreach($isp as $row3):
-										  	?>
+		                              <?php 
+											$isp = $this->db->get('form_isp')->result_array();
+											foreach($isp as $row3):
+									  ?>
 		                                		<option value="<?php echo $row3['isp_id'];?>">
 													<?php echo $row3['isp_name'];?>
 		                                        </option>
-
 			                                <?php
 											endforeach;
 										    ?>
-
 		                            </select>
 									<select name="isp_spd" class="req2 application-input-1" data-validate="required">
 		                              <option value="">ISP SPEED</option>
@@ -589,9 +587,7 @@
 									PREVIOUS
 								</a>
 							</div>
-
-						</form> <!-- Registration form-->
-
+						</form>
 					</div>
 				</div>
 			</div>

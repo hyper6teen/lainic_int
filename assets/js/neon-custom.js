@@ -38,8 +38,14 @@ var public_vars = public_vars || {};
 			public_vars.isRightSidebar = true;
 		}
 		
+		
+		
+		
 		// Sidebar Menu Setup
 		setup_sidebar_menu();
+		
+		
+		
 		
 		// Horizontal Menu Setup
 		setup_horizontal_menu();

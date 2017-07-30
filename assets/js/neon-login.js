@@ -14,6 +14,7 @@ var neonLogin = neonLogin || {};
 	{
 		neonLogin.$container = $("#form_login");
 		
+		
 		// Login Form & Validation
 		neonLogin.$container.validate({
 			rules: {
@@ -115,6 +116,8 @@ var neonLogin = neonLogin || {};
 				}, 650);
 			}
 		});
+		
+		
 		
 		
 		// Lockscreen & Validation

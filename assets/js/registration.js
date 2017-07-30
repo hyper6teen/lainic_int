@@ -1,4 +1,3 @@
-
 function showConfirm(id)
 {
 	var div = document.getElementById(id);
@@ -11,24 +10,24 @@ function hideConfirm(id)
 	div.style.visibility = "hidden"
 }
 
+
 function changeAppPage(changevalue)
 {
 	var div;
 	var div2;
 	var div3;
-	
-	if (changevalue === "afp1") 
-	{
+
+	if (changevalue === "afp1") {
+		
 		div = document.getElementById(changevalue);
 		div.style.display = 'block';
 		div2 = document.getElementById('afp2');
 		div2.style.display = 'none';
 		div3 = document.getElementById('afp3');
 		div3.style.display = 'none';
-		
+
 	}
-	else if (changevalue === "afp2") 
-	{
+	else if (changevalue === "afp2") {
 
 		div = document.getElementById(changevalue);
 		div.style.display = 'block';
@@ -55,43 +54,6 @@ $(document).ready(function(){
 
 	var valid;
 	var valid2;
-	var valid_skype;
-
-	$('#skype').focusout(function(){
-
-		$.ajax({
-			url: baseurl + 'index.php?login/validateSkype',
-			method: 'post',
-			data: {data: $("input#skype").val()},
-			cache: false,
-			beforeSend:function()
-			{
-        		$('#valid').html('<img src="uploads/skype_loading.gif"/>');
-    		},complete: function()
-    		{
-        		
-    		},success:function(data)
-			{
-				if(data === 'invalid')
-				{
-					$('#skype').addClass('invalid-skype');
-					$('#valid').addClass('rejected');
-					$('#valid').removeClass('img-responsive img-circle');
-					valid_skype = false;
-					$('#valid').html('skype account dont exist').fadeIn( 300 ).delay( 5000 ).fadeOut( 400 );
-				} 
-				else 
-				{
-					$('#skype').removeClass('invalid-skype');
-					$('#valid').removeClass('rejected');
-					$('#valid').addClass('img-responsive img-circle');
-					$('#valid').html(data).fadeIn( 300 ).delay( 5000 ).fadeOut( 400 );
-					valid_skype = true;
-				}
-			}
-		});
-
-	});
 
 
 	$('.application-form-page-1').keyup(function(){
@@ -100,18 +62,19 @@ $(document).ready(function(){
 
 		$('.req1').each(function(){
 
-			if ($(this).val() === '') 
-			{
+			if ($(this).val() === '') {
+
 				valid = 'false';
 				return false;
 			}
 			else
 			{
 				valid = 'true';
+				
 			}
 
 		});
-		
+
 
 		if (valid === 'false') {
 
@@ -119,6 +82,7 @@ $(document).ready(function(){
 			$(".nav-1 > span").css('background-color', '#d3d3d3');
 			$(".nav-2 > span:nth-child(1)").css('background', '#d3d3d3');
 			$('#c1').removeClass('check');
+
 		}
 
 		else if(valid === 'true')
@@ -195,6 +159,7 @@ $(document).ready(function(){
 			}
 
 		});
+
 
 		if (valid2 === 'false') {
 

@@ -17,6 +17,7 @@ var neonForgotPassword = neonForgotPassword || {};
 		neonForgotPassword.$steps_list = neonForgotPassword.$steps.find(".step");
 		neonForgotPassword.step = 'step-1'; // current step
 		
+				
 		neonForgotPassword.$container.validate({
 			rules: {
 				

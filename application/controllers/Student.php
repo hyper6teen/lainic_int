@@ -44,68 +44,6 @@ class Student extends CI_Controller
         $this->load->view('backend/index', $page_data);
     }
     
-    public function view_profile()
-    {
-        if ($this->session->userdata('student_login') != 1)
-            redirect(base_url(), 'refresh');
-
-        $page_data['admin_id'] = $this->session->userdata('admin_id');
-
-        //$page_data['page_pro_img'] = $this->crud_model->get_image_url('admin' , $admin_id);
-
-        $admin_info = $this->db->get_where('admin' , array(
-            'admin_id' => $page_data['admin_id']
-        ))->result_array();
-
-        foreach ($admin_info as $row) {
-            
-        $page_data['page_profile'] = 
-
-        '<section class="infos container">
-            <div class="row">
-                <div class="prof-body">
-                    <ul>
-                                <li>
-                                    <div class="prof-menu fa fa-cog"></div>
-                                    <ul class="prof-dropdown">
-                                            <li><a href="">Edit Profile</a></li>
-                                            <li><a href="">Change Password</a></li>
-                                            <li><a href="">Change Image</a></li>
-                                    </ul>
-                                </li>                     
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="content">
-                <h1>Personal Information</h1>
-                <div class="row">
-                    <div class="prompt">Name</div>
-                    <div class="value">'. $row['name'] .'</div>
-                </div>
-                <div class="separator"></div>
-                <div class="row">
-                    <div class="prompt">Email</div>
-                    <div class="value">'. $row['email'] .'</div>
-                </div>
-                <div class="separator"></div>
-                <div class="row">
-                    <div class="prompt">Password</div>
-                    <div class="value">'. $row['password'] .'</div>
-                </div>
-
-            </div>
-        </section>';
-
-        }
-
-
-
-        $page_data['page_name']  = 'dashboard';
-        $page_data['page_title'] = get_phrase('student_dashboard');
-
-        $this->load->view('backend/profile', $page_data);
-    }
     
     /****MANAGE TEACHERS*****/
     function teacher_list($param1 = '', $param2 = '', $param3 = '')

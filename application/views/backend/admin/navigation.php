@@ -1,9 +1,17 @@
 <?php
-if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
-$user_type = $this->session->userdata('login_type');
-?>
 
+// $panels = ['Accounts' => ['Account Requests' => 'creacc',
+//                         'View Accounts' => 'vieacc'], 
+//             'Teachers' => ['View All' => 'option1',
+//                         'Penalty Reports' => 'option2'], 
+//             'Students' =>['Viaw All' => 'option1',
+//                         'Option2' => 'option2'], 
+//             'Documents' => ['Materials' => 'option1',
+//                         'Categories' => 'option2',
+//                         'Reports' => 'option3'],
+//             ];
+
+?>
 <div class='sidebar'>
     <div class='sidebar-header'>
         <div>Menu</div>
