@@ -7,6 +7,40 @@
 	font-family: "Arial";
 }
 
+.prof-head1
+{
+	background-color: #d4f208;  
+	color: #6d0b70; 
+	width: 40%; 
+	height: 5%; 
+	font-size: 15px;    
+	text-align: center; 
+	font-weight: bold;
+}
+
+.prof-head2
+{
+	background-color: #d4f208;  
+	color: #6d0b70; 
+	width: 40%; 
+	height: 5%; 
+	font-size: 15px;    
+	text-align: center; 
+	font-weight: bold; 
+	float: right;
+}
+
+.prof-content
+{
+	display: inline-block;  
+	width: 49.5%;   
+	font-size: 12px;    
+	margin-bottom: 15px;
+}
+.prof-content span
+{
+	font-weight: bold;
+}
 
 .alert-box {
     padding: 15px;
