@@ -1947,14 +1947,91 @@ body::-webkit-scrollbar-thumb {
 	margin: 0 auto;
 }
 
-.teacher-list > a > img
+.teacher-list > a
 {
-	border: 1px solid #f2f0f0;
+	border: 1px solid #949494;
 	width: 31.1%;
 	height: 300px;
 	margin-left: 10px;
 	margin-right: 10px;
 	margin-bottom: 10px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.teacher-list > a > img
+{
+	width: 100%;
+	height: 100%;
+}
+
+.teacher-overlay
+{
+	margin-top: -95%;
+	z-index: 1;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background: red; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(rgba(255,255,255, .5) 40%, #6d0b70); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(rgba(255,255,255, .5) 40%, #6d0b70); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(rgba(255,255,255, .5) 40%, #6d0b70); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(rgba(255,255,255, .5) 40%, #6d0b70); /* Standard syntax */
+    padding-top: 75%;
+    padding-left: 5%;
+    padding-right: 5%;
+    opacity: 0;
+  	transition:opacity .3s linear;*
+}
+
+.teacher-overlay:hover
+{
+	opacity: 1;
+}
+
+.teacher-overlay > div:first-child
+{
+	display: inline-block;
+	vertical-align: top;
+	width: 70%;
+}
+
+.teacher-overlay > div:first-child > p:first-child
+{
+	color: #cfed0c;
+	font-size: 20px;
+	font-weight: bold;
+	margin: 0px;
+}
+
+.teacher-overlay > div:first-child > p:last-child
+{
+	color: #cfed0c;
+	font-size: 12px;
+	margin: 0px;
+}
+
+.teacher-overlay > div:last-child
+{
+	display: inline-block;
+	float: right;
+}
+
+.teacher-overlay > div:last-child > div
+{
+	background-color: white;
+	width: 65px;
+	height: 40px;
+	padding-top: 10px;
+}
+
+.teacher-overlay > div:last-child > div > div
+{
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	margin: 0 auto;
+	background-color: red;
 }
 
 .profile-bold

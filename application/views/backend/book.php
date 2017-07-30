@@ -258,14 +258,60 @@
 				<input value='SEARCH' type='submit'>
 			</div>
 			<div class='teacher-list'>
-				<a href=""><img src=""></a>
-				<a href=""><img src=""></a>
-				<a href=""><img src=""></a>
-				<a href=""><img src=""></a>
-				<a href=""><img src=""></a>
-				<a href=""><img src=""></a>
-				<a href=""><img src=""></a>
-				<a href=""><img src=""></a>
+				<a href="">
+					<img src="<?php echo $this->crud_model->get_image_url('teacher','1');?>">
+					<div class='teacher-overlay'>
+						<div>
+							<p>Abdul Jakul</p>
+							<p>21</p>
+						</div>
+						<div>
+							<div>
+								<div></div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="">
+					<img src="<?php echo $this->crud_model->get_image_url('teacher','1');?>">
+					<div class='teacher-overlay'>
+						<div>
+							<p>Abdul Jakul</p>
+							<p>21</p>
+						</div>
+						<div>
+							<div>
+								<div></div>
+							</div>
+						</div>
+					</div>
+				</a><a href="">
+					<img src="<?php echo $this->crud_model->get_image_url('teacher','1');?>">
+					<div class='teacher-overlay'>
+						<div>
+							<p>Abdul Jakul</p>
+							<p>21</p>
+						</div>
+						<div>
+							<div>
+								<div></div>
+							</div>
+						</div>
+					</div>
+				</a><a href="">
+					<img src="<?php echo $this->crud_model->get_image_url('teacher','1');?>">
+					<div class='teacher-overlay'>
+						<div>
+							<p>Abdul Jakul</p>
+							<p>21</p>
+						</div>
+						<div>
+							<div>
+								<div></div>
+							</div>
+						</div>
+					</div>
+				</a>
 			</div>
 		</div>
 	</div>
