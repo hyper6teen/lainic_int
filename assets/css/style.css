@@ -38,6 +38,12 @@
     display: none;
 }
 
+.invalid-skype
+ {
+ 	background-color: #e2a6a6;
+ }
+
+
 .bold
 {
 	font-weight: bold;

@@ -1,5 +1,3 @@
-
-
 <div class='admin-panel'>
     <?php  include 'navigation.php';?>
     <div class='admin-panel-body'>
@@ -33,15 +31,17 @@
 		       	<?php } ?>
 		    </tbody>
 		</table>
-
+  
+ 
+ <!-----  DATA TABLE EXPORT CONFIGURATIONS ---->                      
     </div>
     <div class='panel-body-footer'></div>
     </div>
 </div>
-<script type="text/javascript">
+  <script type="text/javascript">
 
-$(document).ready(function(){
-    $('#teacher-table').DataTable();
-});
-
-</script>
+  +$(document).ready(function(){
+ +    $('#teacher-table').DataTable();
+ +});
+  
+ +</script>

@@ -409,9 +409,11 @@
 									<input name='address' placeholder='COMPLETE ADDRESS...' class='req1 application-input-3'>
 								</div>
 								<div class='application-row'>
+									<input id="skype" name='skype' placeholder='SKYPE ID...' class='req1 application-input-1'>
+ -									<div id='valid' style='float:left; overflow: hidden;  position:fixed;'></div>
 									<input name='email' type='email' placeholder='E-MAIL ADDRESS...' class='req1 application-input-1'>
 									<input name='mobile_no' type='number' placeholder='MOBILE NUMBER...' class='req1 application-input-1'>
-									<input name='skype_id' placeholder='SKYPE ID...' class='req1 application-input-1'>
+									
 								</div>
 								<a id='n1' onclick='changeAppPage("afp2")' class='application-btn disabled-btn'>
 									NEXT

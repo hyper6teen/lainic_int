@@ -32,36 +32,27 @@ class Email_model extends CI_Model {
         $age 		= $interval->format('%y');
 
         //get names from database base on id's
+        $db_form['nat_name']    = $this->db
+                               ->get_where('nationality' , array('nat_id' => $data['nat_id']))
+                               ->row()->nationality;
+ 
+       $db_form['loc_name']    = $this->db
+                               ->get_where('form_loc' , array('loc_id' => $data['loc_id']))
+                               ->row()->loc_name;
+ 
+       $db_form['isp_name']    = $this->db
+                               ->get_where('form_isp' , array('isp_id' => $data['isp_id']))
+                               ->row()->isp_name;
+ 
+       $db_form['isp_speed']   = $this->db
+                               ->get_where('form_isp_spd' , array('isp_spd_id' => $data['isp_spd_id']))
+                               ->row()->speed;
+ 
+       $db_form['ept']         = $this->db
+                               ->get_where('form_ept' , array('ept_id' => $data['ept_id']))
+                               ->row()->type;
 
-        $db_form['nat_name'] 	= $this ->db
-					            -> select('nationality')
-					            ->where('nat_id', $data['nat_id'] ) 
-					            ->limit(1)->get('nationality')
-					            ->result_array()[0]['nationality'];
-
-        $db_form['loc_name'] 	= $this ->db
-					            -> select('loc_name')
-					            ->where('loc_id', $data['loc_id'] )
-					            ->limit(1)->get('form_loc')
-					            ->result_array()[0]['loc_name'];
-
-        $db_form['isp_name'] 	= $this ->db
-					            -> select('isp_name')
-					            ->where('isp_id', $data['isp_id'] )
-					            ->limit(1)->get('form_isp')
-					            ->result_array()[0]['isp_name'];
-
-        $db_form['isp_speed'] 	= $this ->db
-					            -> select('speed')
-					            ->where('isp_spd_id', $data['isp_spd_id'] )
-					            ->limit(1)->get('form_isp_spd')
-					            ->result_array()[0]['speed'];
-
-        $db_form['ept'] 		= $this ->db
-					            -> select('type')
-					            ->where('ept_id', $data['ept_id'] )
-					            ->limit(1)->get('form_ept')
-					            ->result_array()[0]['type'];
+        
 
         $date = date( "D M d, Y G:i", time() );
         $hash_code = $data['full_name'] . $date;
@@ -152,7 +143,7 @@ class Email_model extends CI_Model {
         if($status == 'accepted')
         {
 
-        	$html['msg'] = 'Congratulations ' . $fullname .', you have been accepted as on of our teachers! Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        	$html['msg'] = 'Congratulations ' . str_replace('_', ' ', $fullname) .', you have been accepted as on of our teachers! Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
@@ -175,7 +166,7 @@ class Email_model extends CI_Model {
         }
         else
         {
-        	$html['msg'] = $fullname .', We are sorry to hear that you did not pass our assessment. but you could still apply after 3 months from this date. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        	$html['msg'] = str_replace('_', ' ', $fullname) .', We are sorry to hear that you did not pass our assessment. but you could still apply after 3 months from this date. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse

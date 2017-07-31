@@ -24,6 +24,50 @@ class Admin extends CI_Controller
         if ($this->session->userdata('admin_login') == 1)
             redirect(base_url() . 'index.php?admin/dashboard', 'refresh');
     }
+
+
+    public function view_profile()
+        {
+         if ($this->session->userdata('admin_login') != 1)
+             redirect(base_url(), 'refresh');
+ 
+        $page_data['user_id'] = $this->session->userdata('admin_id');
+         $page_data['user_type'] = $this->session->userdata('login_type');
+         
+         $admin_info = $this->db->get_where('admin' , array(
+             'admin_id' => $page_data['user_id']
+         ))->result_array();
+ 
+        foreach ($admin_info as $row) {
+             
+         $page_data['page_profile'] = 
+         '<section class="infos container">
+             <div class="content">
+                 <h1>Personal Information</h1>
+                 <div class="row">
+                     <div class="prompt">Name</div>
+                     <div class="value">'. $row['name'] .'</div>
+                 </div>
+                 <div class="separator"></div>
+                 <div class="row">
+                     <div class="prompt">Email</div>
+                     <div class="value">'. $row['email'] .'</div>
+                 </div>
+                 <div class="separator"></div>
+                 <div class="row">
+                     <div class="prompt">Password</div>
+                     <div class="value">'. $row['password'] .'</div>
+                 </div>
+             </div>
+         </section>';
+ 
+         }
+ 
+         $page_data['page_name']  = 'Profile';
+         $page_data['page_title'] = get_phrase('admin_dashboard');
+ 
+         $this->load->view('backend/profile', $page_data);
+     }
     
     /***ADMIN DASHBOARD***/
     function dashboard()
