@@ -1,0 +1,81 @@
+.separator{width: 100%;height: 2px;background-color: #e7e7e7;margin: 15px 0;}
+
+/* Profile CSS */
+
+.profile
+{
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 100px;
+}
+
+.profile > .profile-rect{background-color: #f9ec31;}
+.profile > .profile-head > .row > .col > .logo > b{color: #fff}
+.profile > .pre-header{padding-bottom: 0}
+.profile > .pre-header > .prof-pic{background-color: #a134a5;width: 100px;height: 100px;border-radius: 50px;overflow: hidden;margin-left: auto;margin-right: auto;margin-top: -40px}
+.profile > .pre-header > .prof-pic > img{width: 100%;height: 100%}
+
+.profile > .program-rect{width: 100%;height: 100px;padding-top: 300px;position: absolute;z-index: 0;background-color: #2c3b41;overflow: hidden;}
+.profile > .program-rect:after {content: "";display: block;background: white;height: 190px;width: 8000px;position: absolute;z-index: 0;top: -35%;left: 50%;margin-left: -4000px;-webkit-transform: rotate(-4deg);transform: rotate(-4deg);}
+.profile > .infos{padding-top: 25px;padding-bottom: 25px;}
+.profile > .infos > .content{content: '';position: relative;}
+.profile > .infos > .content > h1{color: #083c70;margin-top: 0}
+.profile > .infos > .content > .row{margin-bottom: 15px;}
+.profile > .infos > .content > form{margin: 0 0 30px 0;}
+.profile > .infos > .content > form > .row{margin: 0;}
+.profile > .infos > .content > form > .row > .col > .field{padding-left: 5px;padding-right: 5px}
+.profile > .infos > .content > form > .row > .col > .field > input[type="submit"]{margin-top: 10px}
+.profile > .infos > .content > form > .row > .col > .field-pw > a{right: 9px;top: 25px;} 
+.profile > .infos > .content > form > .avatar{background-color: #f9ec31;width: 100px;height: 100px;overflow: hidden;float: left;margin-right: 20px;margin-bottom: 20px}
+.profile > .infos > .content > form > .avatar > img{width: 100%;height: 100%;}
+.profile > .infos > .content > .row > .prompt{font-weight: bold;font-size: 13px;color: #a134a5;}
+.profile > .infos > .content > .row > .value{font-weight: 400}
+.profile > .infos > .content > .row > .btn-action{margin-right: 20px}
+
+.profile > .program-cont > .content{content: '';position:relative;}
+.profile > .program-cont > .content > .row{margin: 0;}
+.profile > .program-cont > .content > .row > h1{font-family: 'Roboto', sans-serif;font-size: 100px;font-weight: 800;color: #fff;margin: 0;margin-top: 7px;padding: 0;}
+.profile > .program-cont > .content > .row > b{content: '';position: absolute;font-family: 'Roboto', sans-serif;font-size: 40px;font-weight: 800;color: #f9ec31;margin-bottom: -20px}
+.profile > .program-cont > .content > .title{margin-top: 70px;margin-left: -49px;}
+.profile > .infos > .row{margin: 0;}
+.profile > .infos > .row > .breadcrumb{margin: 0;padding-left: 0}
+
+.profile > .infos > .row > .setting{float: right;margin-top: -60px}
+.profile > .infos > .row > .dropdown > button{background-color: transparent;border: none;outline: 0;font-size: 20px;color: #787d83;}
+.profile > .infos > .row > .dropdown > button:hover{color: #5c5f64}
+.profile > .infos > .row > .dropdown > .right{margin-left: -130px}
+
+.panel-profile-header
+{
+	border-top: 3px solid #CCCCCC;
+	width: 100%;
+	padding-top: 5px;
+	height: 45px;
+}
+
+.panel-profile-title
+{
+	font-family: 'PT Sans Normal';
+	color: #4a084c;
+	font-size: 25px;
+}
+
+.panel-profile-title > span
+{
+	font-weight: bold;
+}
+
+.panel-profile
+{
+	width: 100%;
+	height: calc(100% - 130px);
+	overflow: scroll;
+	overflow-x: hidden;
+}
+
+.panel-profile-footer
+{
+	border-bottom: 3px solid #CCCCCC;
+	width: 100%;
+	height: 20px;
+}
