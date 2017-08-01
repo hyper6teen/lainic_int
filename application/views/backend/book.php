@@ -5,130 +5,6 @@
 
 <?php
 	
-	$hash = $this->input->post('hash_app');
-
-	$prompt['status'] = '';
-
-	if( $hash != null )
-	{
-		$get_app = $this->db->where('code', $hash)->get('app_hash')->result_array();
-
-		if($get_app != null)
-		{
-
-			if($this->input->post('accept'))
-			{	
-				$appdata1 = array(
-		        'name'		=> $this->input->post('full_name'),
-		        'birthday'	=> $this->input->post('b_date'),
-		        'gender'	=> $this->input->post('gender'),
-		        'nat_id'	=> $this->input->post('nat_id'),
-		        'loc_id'	=> $this->input->post('loc_id'),
-		        'address'	=> $this->input->post('address'),
-		        'email'		=> $this->input->post('email'),
-		        'phone'		=> $this->input->post('contact'),
-		        'password'	=> substr( $get_app[0]['code'] , 0, 12)
-		        );
-
-		        $appdata2 = array(
-		        'ept_id'		=> $this->input->post('ept'),
-		        'ept_score'		=> $this->input->post('ept_score'),
-		        'skype_id'		=> $this->input->post('skype'),
-		        'isp_id'		=> $this->input->post('isp'),
-		        'isp_spd_id'	=> $this->input->post('isp_spd'),
-		        'last_school'	=> $this->input->post('last_sch'),
-		        'work_exp'		=> $this->input->post('exp'),
-		        'speak_other'	=> $this->input->post('spk_other')
-		        );
-
-				$this->applicant_model->processApplicant($get_app[0]['code'], $appdata1, $appdata2,'accepted');
-
-				$prompt['status'] = 'Applicant Accepted';
-				$prompt['div']  = 'accepted';
-				$prompt['css'] = "alert-box accepted";
-				$prompt['font_size'] = "font-size:32px;";
-			}
-			else
-			{
-
-				$appdata1 = array(
-		        'name'		=> $this->input->post('full_name'),
-		        'email'		=> $this->input->post('email'),
-		        'password'	=> substr( $get_app[0]['code'] , 0, 12)
-		        );
-				$appdata2 = array();
-
-				$this->applicant_model->processApplicant($get_app[0]['code'], $appdata1, $appdata2,'rejected');
-
-				$prompt['status'] = 'Applicant Rejected';
-				$prompt['div']  = 'rejected';
-				$prompt['css'] = "alert-box rejected";
-				$prompt['font_size'] = "font-size:32px;";
-			}
-		}else
-		{
-			$prompt['status'] = 'Applicant<br>already proccess';
-			$prompt['div']  = 'warning';
-			$prompt['css'] = "alert-box warning";
-			$prompt['font_size'] = "font-size:32px;";
-		}
-
-		$promp_request = "<script>
-					var statusPrompt = function()
-						{
-	    					$( 'div.". $prompt['div'] ."' ).fadeIn( 300 ).delay( 3000 ).fadeOut( 400 );
-						};
-						setTimeout(statusPrompt, 1000);
-
-					var closeWindow = function()
-						{
-	    					window.close();
-						};
-						setTimeout(closeWindow, 5500);
-					</script>";
-		echo $promp_request;
-
-
-	} // if hash not null end
-
-	if ($this->session->userdata('application_sent') == 1)
-	{
-		$this->session->set_userdata('application_sent', '0');
-
-		$prompt['status'] = 'Application sent.<br>please check your email<br>and skype often for a potential interview.<br>Thank you and good luck!';
-		$prompt['div']  = 'accepted';
-		$prompt['css'] = "alert-box accepted";
-		$prompt['font_size'] = "font-size:24px;";
-
-		$promp_request = "<script>
-					var statusPrompt = function()
-						{
-	    					$( 'div.". $prompt['div'] ."' ).fadeIn( 300 ).delay( 10000 ).fadeOut( 400 );
-						};
-						setTimeout(statusPrompt, 1000);
-					</script>";
-		echo $promp_request;
-	}
-	else if($this->session->userdata('application_not_sent') == 1)
-	{
-		$this->session->set_userdata('application_not_sent', '0');
-
-		$prompt['status'] = 'Application failed to sent.<br> The system might be having some difficulty<br>Or your internet connection is having a problem<br>sending your application form.<br>Please try again later. <br>Sorry for the inconvenience.';
-		$prompt['div']  = 'rejected';
-		$prompt['css'] = "alert-box rejected";
-		$prompt['font_size'] = "font-size:24px;";
-
-		$promp_request = "<script>
-					var statusPrompt = function()
-						{
-	    					$( 'div.". $prompt['div'] ."' ).fadeIn( 300 ).delay( 10000 ).fadeOut( 400 );
-						};
-						setTimeout(statusPrompt, 1000);
-					</script>";
-		echo $promp_request;
-
-	}
-
 	$system_name	=	$this->db->get_where('settings' , array('type'=>'system_name'))->row()->description;
 	$system_title	=	$this->db->get_where('settings' , array('type'=>'system_title'))->row()->description;
 ?>
@@ -214,9 +90,9 @@
 				<div>
 					<ul>
 						<li>		
-							<div class='<?php echo $prompt['css'];?>' style='<?php echo $prompt['font_size'];?>'> <?php echo $prompt['status'];?> </div>
+
 						</li>
-						<li><a href="">HOME</a></li>
+						<li><a href="<?php echo base_url();?>">HOME</a></li>
 						<li><a href="">ABOUT US</a></li>
 						<li><a href="">FEES</a></li>
 						<li><a href="<?php echo base_url();?>index.php?login/book_class">BOOK A CLASS</a></li>
@@ -258,60 +134,41 @@
 				<input value='SEARCH' type='submit'>
 			</div>
 			<div class='teacher-list'>
+
+				<?php 
+					$this->db->select('teacher_id, name, gender, nat_id, birthday');
+        			$teachers = $this->db->get('teacher' )->result_array();
+
+					foreach($teachers as $row):
+					
+					$nat  = $this->db
+                    ->get_where('nationality' , array('nat_id' => $row['nat_id']))
+                    ->row()->nationality;
+
+		            $now        = new DateTime();
+		            $birthday   = new DateTime($row['birthday']);
+		            $interval   = $now->diff($birthday);
+		            $age        = $interval->format('%y');
+
+		            $gender = $row['gender'] == 0 ? 'MALE' : 'FEMALE';
+		            $firt_name = explode('/', $row['name'] )
+				?>
+
 				<a href="">
-					<img src="<?php echo $this->crud_model->get_image_url('teacher','1');?>">
+					<img src="<?php echo $this->crud_model->get_image_url('teacher', $row['teacher_id']);?>">
 					<div class='teacher-overlay'>
 						<div>
-							<p>Abdul Jakul</p>
-							<p>21</p>
+							<p><?php echo str_replace('_', ' ', $firt_name[1]); ?></p>
+							<p><?php echo $gender . '  ' . $age; ?></p>
 						</div>
 						<div>
-							<div>
-								<div></div>
-							</div>
+							<?php echo $nat; ?>
 						</div>
 					</div>
 				</a>
-				<a href="">
-					<img src="<?php echo $this->crud_model->get_image_url('teacher','1');?>">
-					<div class='teacher-overlay'>
-						<div>
-							<p>Abdul Jakul</p>
-							<p>21</p>
-						</div>
-						<div>
-							<div>
-								<div></div>
-							</div>
-						</div>
-					</div>
-				</a><a href="">
-					<img src="<?php echo $this->crud_model->get_image_url('teacher','1');?>">
-					<div class='teacher-overlay'>
-						<div>
-							<p>Abdul Jakul</p>
-							<p>21</p>
-						</div>
-						<div>
-							<div>
-								<div></div>
-							</div>
-						</div>
-					</div>
-				</a><a href="">
-					<img src="<?php echo $this->crud_model->get_image_url('teacher','1');?>">
-					<div class='teacher-overlay'>
-						<div>
-							<p>Abdul Jakul</p>
-							<p>21</p>
-						</div>
-						<div>
-							<div>
-								<div></div>
-							</div>
-						</div>
-					</div>
-				</a>
+
+				<?php endforeach;?>
+
 			</div>
 		</div>
 	</div>

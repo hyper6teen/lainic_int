@@ -1,5 +1,4 @@
 <?php
-
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Email extends CI_Controller
@@ -14,7 +13,7 @@ class Email extends CI_Controller
             $data = array(
             'full_name'     => $this->input->post('lname') . "/" . $this->input->post('fname') . "/" . $this->input->post('mname'),
             'birth'         => $this->input->post('birth') ,
-            'gender'        => $this->input->post('gender') == 0 ? 'MALE' : 'FEMALE';
+            'gender'        => $this->input->post('gender') == 0 ? 'MALE' : 'FEMALE',
             'nat_id'        => $this->input->post('nationality'),
             'loc_id'        => $this->input->post('location'),
             'email'         => $this->input->post('email'),

@@ -4,9 +4,9 @@
 <head>
 
 <?php
-	
-	$hash = $this->input->post('hash_app');
 
+	$hash = $this->input->post('hash_app');
+	
 	$prompt['status'] = '';
 
 	if( $hash != null )
