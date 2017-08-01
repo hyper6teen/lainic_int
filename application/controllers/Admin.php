@@ -142,6 +142,7 @@ class Admin extends CI_Controller
 				$this->db->insert('student' , $data);
 				//print_r($data);
 			}
+            
 			redirect(base_url() . 'index.php?admin/student_information/' . $this->input->post('class_id'), 'refresh');
 		}
 		$page_data['page_name']  = 'student_bulk_add';

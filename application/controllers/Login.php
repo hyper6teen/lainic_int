@@ -20,9 +20,6 @@ class Login extends CI_Controller {
         $this->output->set_header("Expires: Mon, 26 Jul 2010 05:00:00 GMT");
     }
 
-
-
-
     //Default function, redirects to logged in user area
     public function index() {
 
@@ -40,6 +37,7 @@ class Login extends CI_Controller {
 
         $this->load->view('backend/login');
     }
+
 
 
     function validateSkype()
@@ -63,7 +61,6 @@ class Login extends CI_Controller {
              echo strpos($response, '"IfExistsResult":0') != false ? "<img src = https://api.skype.com/users/".$skype_id."/profile/avatar/>" : "invalid";
          }
      }
-
 
     //Ajax login function 
     function ajax_login() 
