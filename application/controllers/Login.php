@@ -96,6 +96,7 @@ class Login extends CI_Controller {
                                     <div class="prof-content"><span>SCORE : </span>' . $row['ept_score'] . '</div>
                             </div>
                     ';
+
         } // end for each teacher info 1
         $page_data['user_id'] = $teacher_id;
         $page_data['user_type'] = 'teacher';

@@ -64,6 +64,7 @@ class Admin extends CI_Controller
  
          $page_data['page_name']  = 'Profile';
          $page_data['page_title'] = get_phrase('admin_dashboard');
+         $page_data['include_hf']  = true;
  
          $this->load->view('backend/profile', $page_data);
      }
