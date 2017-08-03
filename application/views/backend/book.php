@@ -154,7 +154,7 @@
 		            $firt_name = explode('/', $row['name'] )
 				?>
 
-				<a href="">
+				<a href="<?php echo base_url();?>index.php?login/view_teacher_profile/<?php echo $row['teacher_id'];?>" >
 					<img src="<?php echo $this->crud_model->get_image_url('teacher', $row['teacher_id']);?>">
 					<div class='teacher-overlay'>
 						<div>

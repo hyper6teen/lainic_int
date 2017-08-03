@@ -38,8 +38,6 @@ class Login extends CI_Controller {
         $this->load->view('backend/login');
     }
 
-
-
     function validateSkype()
      {
          $skype_id = $_POST['data'];
@@ -56,10 +54,57 @@ class Login extends CI_Controller {
              curl_setopt($ch, CURLOPT_ENCODING, "gzip,deflate");     
              $response = curl_exec($ch);
              curl_close($ch);
-            $response = str_replace('<', '&lt;', $response);
+             $response = str_replace('<', '&lt;', $response);
              $response = str_replace('>', '&gt;', $response);
              echo strpos($response, '"IfExistsResult":0') != false ? "<img src = https://api.skype.com/users/".$skype_id."/profile/avatar/>" : "invalid";
          }
+     }
+
+     function view_teacher_profile($teacher_id)
+     {
+        
+        $teacher_info = $this->db->join('teacher_pro TP', 'T.teacher_id = TP.u_pro_id')->get_where('teacher T' , array(
+            'T.teacher_id' => $teacher_id
+        ))->result_array();
+
+        foreach ($teacher_info as $row) 
+        {
+            $full_name  = explode('/', $row['name'] );
+            $fullname   = $full_name[0] . ', ' . $full_name[1] . ' ' . substr( $full_name[2] , 0, 1) . '.';    
+
+            $now        = new DateTime();
+            $birthday   = new DateTime($row['birthday']);
+            $interval   = $now->diff($birthday);
+            $age        = $interval->format('%y');
+            $gender     = $row['gender'] == 0 ? "Male" : "Female";
+
+            $page_data['page_profile1'] = 
+            '
+                <div class="content">
+                <p style="font-size: 20px;  font-weight: bold;  margin-bottom: .5%;   margin-left: 20px;  color: #2a2829;">' . str_replace('_', ' ', $fullname) . '</p>
+                    <div style="width: 100%;">
+                        <div class="prof-head1">PERSONAL INFORMATION</div>
+                            <div style="background-color: #d4f208;  width: 100%; height: 3px;"></div>
+                                <div style="width: 100%; padding: 20px;">
+                                    <div class="prof-content"><span>AGE : </span>' . $age . '</div>
+                                    <div class="prof-content"><span>GENDER : </span>' . $gender . '</div>
+                                    <div class="prof-content"><span>NATIONALITY : </span>' . $this->db->get_where('nationality' , array('nat_id' => $row['nat_id']))->row()->nationality . '</div>
+                                    <div class="prof-content"><span>SPEAKS OTHER LANGUAGE : </span>' . $row['speak_other'] . '</div>
+                                    <div class="prof-content"><span>INTERNET SERVICE PROVIDER : </span>' . $this->db->get_where('form_isp' , array('isp_id' => $row['isp_id']))->row()->isp_name . '</div>
+                                    <div class="prof-content"><span>INTERNET SPEED : </span>' . $this->db->get_where('form_isp_spd' , array('isp_spd_id' => $row['isp_spd_id']))->row()->speed . '</div>
+                                    <div class="prof-content"><span>ENGLISH PROFICIENCY TEST : </span>' . $this->db->get_where('form_ept' , array('ept_id' => $row['ept_id']))->row()->type . '</div>
+                                    <div class="prof-content"><span>SCORE : </span>' . $row['ept_score'] . '</div>
+                            </div>
+                    ';
+        } // end for each teacher info 1
+        $page_data['user_id'] = $teacher_id;
+        $page_data['user_type'] = 'teacher';
+        $page_data['page_profile'] = $page_data['page_profile1'];
+        $page_data['page_name']  = 'Teacher Profile';
+        $page_data['page_title'] = 'Book a Class';
+        $page_data['include_hf'] = false;
+
+        $this->load->view('backend/profile', $page_data);
      }
 
     //Ajax login function 

@@ -6,7 +6,7 @@
 <?php
 
 	$hash = $this->input->post('hash_app');
-	
+
 	$prompt['status'] = '';
 
 	if( $hash != null )
@@ -126,7 +126,6 @@
 						setTimeout(statusPrompt, 1000);
 					</script>";
 		echo $promp_request;
-
 	}
 
 	$system_name	=	$this->db->get_where('settings' , array('type'=>'system_name'))->row()->description;

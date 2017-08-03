@@ -32,7 +32,7 @@ class Admin extends CI_Controller
              redirect(base_url(), 'refresh');
  
         $page_data['user_id'] = $this->session->userdata('admin_id');
-         $page_data['user_type'] = $this->session->userdata('login_type');
+        $page_data['user_type'] = $this->session->userdata('login_type');
          
          $admin_info = $this->db->get_where('admin' , array(
              'admin_id' => $page_data['user_id']
@@ -60,7 +60,6 @@ class Admin extends CI_Controller
                  </div>
              </div>
          </section>';
- 
          }
  
          $page_data['page_name']  = 'Profile';
@@ -90,7 +89,6 @@ class Admin extends CI_Controller
     }
     
 
-    
     /****MANAGE STUDENTS CLASSWISE*****/
 	function student_add()
 	{

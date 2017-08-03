@@ -47,7 +47,7 @@ class Teacher extends CI_Controller
         $teacher_info2 = $this->db->get_where('teacher_pro' , array(
             'u_pro_id' => $page_data['user_id']
         ))->result_array();
-
+        
         foreach ($teacher_info1 as $row) 
         {
             
@@ -103,11 +103,11 @@ class Teacher extends CI_Controller
             </section>';
         } // end for each teacher info 2
 
-
+         
         $page_data['page_profile'] = $page_data['page_profile1'] . $page_data['page_profile2'];
         $page_data['page_name']  = 'Profile';
         $page_data['page_title'] = get_phrase('admin_dashboard');
-
+        $page_data['include_hf'] = true;
 
 
         $this->load->view('backend/profile', $page_data);

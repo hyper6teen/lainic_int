@@ -11,8 +11,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 </head>
 
 <body>
-	<?php include 'dashboard-header.php'; ?>
-
+	<?php if($include_hf) include 'dashboard-header.php';?>
 <div class='panel-profile'>
           
 	<div class='profile'>
@@ -28,6 +27,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 	</div>
 </div>
 
-<?php include 'dashboard-footer.php'; ?>	
+<?php 
+	if($include_hf) include 'dashboard-footer.php'; ?>	
 </body>
 </html>
